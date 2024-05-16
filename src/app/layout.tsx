@@ -9,6 +9,16 @@ export const metadata: Metadata = {
   description: "Professional and passionate photo and movie editor.",
   keywords:
     "photo editor, movie editor, Daniel Shalts, Daniel Shalts photo editor, Daniel Shalts movie editor,דניאל שלץ, דניאל, שלץ, עריכת וידיאו, עריכת סרטים, סרטים, וידיאו, צילום סרטים, צילום, צלם ",
+  openGraph: {
+    images: [
+      {
+        url: "https://danielshalts.netlify.app/favicon.ico",
+        width: 512,
+        height: 512,
+        alt: "Daniel Shalts logo",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
