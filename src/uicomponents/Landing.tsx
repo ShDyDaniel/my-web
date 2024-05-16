@@ -47,7 +47,7 @@ export default function Landing() {
                   Daniel Shalts
                 </h1>
                 <p className="mx-auto max-w-[700px] text-gray-200 md:text-xl">
-                  I'm a videographer and editor with experience in the field.
+                  היי.
                 </p>
                 <div className="space-x-4 mt-6">
                   <Link
