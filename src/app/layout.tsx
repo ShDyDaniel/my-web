@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Daniel Shalts - Movie Editor ",
   description: "Professional and passionate photo and movie editor.",
   keywords:
-    "photo editor, movie editor, Daniel Shalts, Daniel Shalts photo editor, Daniel Shalts movie editor",
+    "photo editor, movie editor, Daniel Shalts, Daniel Shalts photo editor, Daniel Shalts movie editor,דניאל שלץ, דניאל, שלץ, עריכת וידיאו, עריכת סרטים, סרטים, וידיאו, צילום סרטים, צילום, צלם ",
 };
 
 export default function RootLayout({
