@@ -49,7 +49,7 @@ export default function Landing() {
                 <p className="mx-auto max-w-[700px] text-gray-200 md:text-xl" style={{ direction: "rtl" }}>
                   צלם ועורך וידאו מקצועי
                 </p>
-                <div className="space-x-4 mt-6">
+                <div className="mt-6">
                   <Link
                     className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors duration-300 motion-reduce:transition-none motion-reduce:duration-0 hover:bg-gray-600/80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-40/90 dark:focus-visible:ring-gray-300"
                     href="#contact"
