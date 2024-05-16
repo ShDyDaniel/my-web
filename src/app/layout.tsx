@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "https://danielshalts.netlify.app/favicon.ico",
+        url: "https://danielshalts.netlify.app/assets/IMG_3117.jpg",
         width: 512,
         height: 512,
         alt: "Daniel Shalts logo",
