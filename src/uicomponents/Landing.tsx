@@ -216,7 +216,7 @@ export default function Landing() {
                   className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400"
                   style={{ direction: "rtl" }}
                 >
-                  אתם יותר ממוזמנים ליצור איתי קשר אם יש לכם פניות או שאלות:)
+                  אתם יותר ממוזמנים ליצור איתי קשר אם יש לכם פניות או שאלות :)
                 </p>
               </div>
               <div className="mx-auto w-full max-w-sm space-y-2 text-xl">
