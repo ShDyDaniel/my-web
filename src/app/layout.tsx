@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Daniel Shalts - Movie Editor ",
+  title: "דניאל שלץ - צילום ועריכה מקצועית ",
   description: "Professional and passionate photo and movie editor.",
   keywords:
     "photo editor, movie editor, Daniel Shalts, Daniel Shalts photo editor, Daniel Shalts movie editor,דניאל שלץ, דניאל, שלץ, עריכת וידיאו, עריכת סרטים, סרטים, וידיאו, צילום סרטים, צילום, צלם ",
