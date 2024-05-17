@@ -18,7 +18,7 @@ export default function Landing() {
             className="text-sm font-medium hover:underline underline-offset-4"
             href="#about"
           >
-            About
+            מידע
           </Link>
           <Link
             className="text-sm font-medium hover:underline underline-offset-4"
@@ -30,7 +30,7 @@ export default function Landing() {
             className="text-sm font-medium hover:underline underline-offset-4"
             href="#contact"
           >
-            Contact
+            יצירת קשר
           </Link>
         </nav>
       </header>
