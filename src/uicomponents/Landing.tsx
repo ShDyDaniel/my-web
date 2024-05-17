@@ -107,7 +107,7 @@ export default function Landing() {
                   className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400"
                   style={{ direction: "rtl" }}
                 >
-                  כאן אתם יכולים לראות את הפרויקטים שלי!
+                  קצת מהפרויקטים שעבדתי עליהם
                 </p>
               </div>
             </div>
