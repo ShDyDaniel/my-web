@@ -107,7 +107,7 @@ export default function Landing() {
                   className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400"
                   style={{ direction: "rtl" }}
                 >
-                  קצת מהפרויקטים שעבדתי עליהם
+                  :קצת מהפרויקטים שעבדתי עליהם
                 </p>
               </div>
             </div>
