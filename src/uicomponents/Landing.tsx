@@ -36,27 +36,31 @@ export default function Landing() {
       </header>
       <main className="flex-1">
         <section
-          className="w-full py-12 md:py-24 lg:py-0 border-y bg-cover bg-center bg-no-repeat text-white flex items-center justify-end"
+          className="w-full py-12 md:py-24 lg:py-0 border-y bg-cover bg-center bg-no-repeat text-white"
           id="hero"
           style={{ backgroundImage: "url(/assets/videography.jpg)" }}
         >
-          <div className="px-4 md:px-6 space-y-10 xl:space-y-16 bg-black/50 backdrop-blur-sm py-12 md:py-24 lg:py-64 rounded-md">
-            <div className="px-4 sm:px-6 md:px-10 text-right">
-              <div>
-                <h1 className="lg:leading-tighter text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem]" style={{ direction: "rtl" }}>
-                  דניאל שלץ
-                </h1>
-                <p className="mx-auto text-gray-200 md:text-xl" style={{ direction: "rtl" }}>
-                  צלם ועורך וידאו מקצועי
-                </p>
-                <div className="space-x-4 mt-6" style={{ direction: "rtl" }}>
-                  <Link
-                    className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors duration-300 motion-reduce:transition-none motion-reduce:duration-0 hover:bg-gray-600/80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-40/90 dark:focus-visible:ring-gray-300"
-                    href="#contact"
-                  >
-                    צרו קשר
-                  </Link>
-                </div>
+          <div className="h-full bg-black/50 backdrop-blur-sm py-12 md:py-24 lg:py-64 rounded-md">
+            <div className="px-4 sm:px-6 md:px-10 mr-0 lg:mr-96">
+              <h1
+                className="lg:leading-tighter text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem]"
+                style={{ direction: "rtl" }}
+              >
+                דניאל שלץ
+              </h1>
+              <p
+                className="mx-auto text-gray-200 md:text-xl"
+                style={{ direction: "rtl" }}
+              >
+                צלם ועורך וידאו מקצועי
+              </p>
+              <div className="space-x-4 mt-6" style={{ direction: "rtl" }}>
+                <Link
+                  className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors duration-300 motion-reduce:transition-none motion-reduce:duration-0 hover:bg-gray-600/80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-40/90 dark:focus-visible:ring-gray-300"
+                  href="#contact"
+                >
+                  צרו קשר
+                </Link>
               </div>
             </div>
           </div>
@@ -194,91 +198,63 @@ export default function Landing() {
           </div>
         </section>
         <section
-          className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-t from-gray-50 to-white dark:from-gray-950 dark:to-gray-900"
+          className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800 scroll-smooth"
           id="contact"
         >
           <div className="container px-4 md:px-6 space-y-12">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800">
-                  בואו נדבר
+                <div
+                  className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800"
+                  style={{ direction: "rtl" }}
+                >
+                  צרו קשר
                 </div>
                 <h2
                   className="text-3xl font-bold tracking-tighter sm:text-5xl"
                   style={{ direction: "rtl" }}
                 >
-                  צרו איתי קשר
+                  צרו קשר
                 </h2>
                 <p
                   className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400"
                   style={{ direction: "rtl" }}
                 >
-                  :רוצים לשאול שאלה או להתחיל פרויקט?
-                  <br />
-                  צרו קשר ואחזור אליכם בהקדם
+                  אתם יותר ממוזמנים ליצור איתי קשר אם יש לכם פניות או שאלות:)
                 </p>
               </div>
+              <div className="mx-auto w-full max-w-sm space-y-2 text-xl">
+                <Link type="email" href="mailto:dyshalts@gmail.com">
+                  <span className="inline-flex items-center">
+                    <MdEmail className="ml-2 mr-2" /> dyshalts@gmail.com
+                  </span>
+                </Link>
+                <br className="select-none" />
+                <br className="select-none" />
+                <Link type="tel" href="tel:0515227660">
+                  <span className="inline-flex items-center">
+                    <FaPhone className="ml-2 mr-2" /> 051-522-7660
+                  </span>
+                </Link>
+              </div>
             </div>
-            <form
-              className="mx-auto grid w-full max-w-[48rem] gap-6"
-              style={{ direction: "rtl" }}
-            >
-              <div className="grid gap-2">
-                <label className="text-sm font-medium" htmlFor="name">
-                  שם
-                </label>
-                <Input id="name" placeholder="שם" type="text" />
-              </div>
-              <div className="grid gap-2">
-                <label className="text-sm font-medium" htmlFor="email">
-                  אימייל
-                </label>
-                <Input id="email" placeholder="אימייל" type="email" />
-              </div>
-              <div className="grid gap-2">
-                <label className="text-sm font-medium" htmlFor="message">
-                  הודעה
-                </label>
-                <Input
-                  id="message"
-                  placeholder="ההודעה שלך"
-                  type="text"
-                />
-              </div>
-              <Button className="w-full bg-black text-white" type="submit">
-                שלח הודעה
-              </Button>
-            </form>
           </div>
         </section>
       </main>
-      <footer className="w-full bg-gray-50 dark:bg-gray-950">
-        <div className="container px-4 py-8 md:px-6 lg:flex lg:items-center lg:justify-between">
-          <div className="space-y-4 text-center lg:text-right">
-            <Link
-              className="inline-block text-xl font-bold text-gray-900 dark:text-white"
-              href="#"
-            >
-              Daniel Shalts
-            </Link>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              © 2024 All rights reserved.
-            </p>
+      <footer className="bg-gray-100 p-6 md:py-12 w-full dark:bg-gray-800 flex justify-center items-center">
+        <div className="container max-w-xl grid grid-cols-2 gap-2 text-sm text-center">
+          <div className="grid gap-1">
+            <h3 className="font-semibold">עליי</h3>
+            <Link href="#about">מי אני</Link>
+            <Link href="#work">הפרויקטים שלי</Link>
           </div>
-          <div className="mt-6 flex items-center justify-center space-x-6 lg:mt-0 lg:justify-end">
-            <Link
-              aria-label="Phone"
-              className="text-gray-600 transition dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
-              href="tel:+1234567890"
-            >
-              <FaPhone />
+          <div className="grid gap-1">
+            <h3 className="font-semibold">צרו קשר</h3>
+            <Link type="email" href="mailto:dyshalts@gmail.com">
+              אימייל
             </Link>
-            <Link
-              aria-label="Email"
-              className="text-gray-600 transition dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
-              href="mailto:example@example.com"
-            >
-              <MdEmail />
+            <Link type="tel" href="tel:0515227660">
+              טלפון
             </Link>
           </div>
         </div>
@@ -287,19 +263,10 @@ export default function Landing() {
   );
 }
 
-const UserIcon = ({ className }: { className: string }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className={className}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-    <circle cx="12" cy="7" r="4" />
-  </svg>
-);
+function UserIcon(props: any) {
+  return (
+    <Image src="/assets/danielmovie.svg" alt="logo" height={50} width={50} />
+  );
 
+  //
+}
