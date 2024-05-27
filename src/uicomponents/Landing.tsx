@@ -40,23 +40,21 @@ export default function Landing() {
           id="hero"
           style={{ backgroundImage: "url(/assets/videography.jpg)" }}
         >
-          <div className="px-4 md:px-6 space-y-10 xl:space-y-16 bg-black/50 backdrop-blur-sm py-12 md:py-24 lg:py-64 rounded-md">
-            <div className="px-4 sm:px-6 md:px-10">
-              <div>
-                <h1 className="lg:leading-tighter text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem]" style={{ direction: "rtl" }}>
-                  דניאל שלץ
-                </h1>
-                <p className="mx-auto text-gray-200 md:text-xl" style={{ direction: "rtl" }}>
-                  צלם ועורך וידאו מקצועי
-                </p>
-                <div className="space-x-4 mt-6" style={{ direction: "rtl" }}>
-                  <Link
-                    className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors duration-300 motion-reduce:transition-none motion-reduce:duration-0 hover:bg-gray-600/80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-40/90 dark:focus-visible:ring-gray-300"
-                    href="#contact"
-                  >
-                    צרו קשר
-                  </Link>
-                </div>
+          <div className="flex items-center justify-center h-full bg-black/50 backdrop-blur-sm py-12 md:py-24 lg:py-64 rounded-md">
+            <div className="px-4 sm:px-6 md:px-10 text-center">
+              <h1 className="lg:leading-tighter text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem]" style={{ direction: "rtl" }}>
+                דניאל שלץ
+              </h1>
+              <p className="mx-auto text-gray-200 md:text-xl" style={{ direction: "rtl" }}>
+                צלם ועורך וידאו מקצועי
+              </p>
+              <div className="space-x-4 mt-6" style={{ direction: "rtl" }}>
+                <Link
+                  className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors duration-300 motion-reduce:transition-none motion-reduce:duration-0 hover:bg-gray-600/80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-40/90 dark:focus-visible:ring-gray-300"
+                  href="#contact"
+                >
+                  צרו קשר
+                </Link>
               </div>
             </div>
           </div>
