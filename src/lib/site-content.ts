@@ -130,7 +130,7 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
     footerSubtitle: "Video Production & Editing",
   },
   navigation: [
-    { label: "בית", href: "#hero" },
+    { label: "ב123ת", href: "#hero" },
     { label: "הסטודיו", href: "#studio" },
     { label: "עבודות", href: "#work" },
     { label: "תהליך", href: "#process" },
