@@ -158,7 +158,7 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
     stats: [
       { value: "4K", label: "איכות מסירה" },
       { value: "24-72h", label: "זמני תגובה מהירים" },
-      { value: "R1L", label: "התאמה לקהל מקומי" },
+      { value: "RTL", label: "התאמה לקהל מקומי" },
     ],
     helperText: "עיצוב נקי, אנימציות מודרניות ותוצרים מוכנים לפרסום",
     mediaTitle: "צילום + עריכה + פיינישינג",

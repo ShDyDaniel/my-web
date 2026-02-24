@@ -6,7 +6,10 @@
     "dev": "next dev -p 4023",
     "build": "next build",
     "start": "next start",
+<<<<<<< HEAD
     "export": "next export",
+=======
+>>>>>>> a195d84 (Initial upload or update)
     "lint": "next lint",
     "postbuild": "next-sitemap --config next-sitemap.config.js"
   },

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { cookies } from "next/headers";
 import { getCategoryOneHeroImages, getImageSystemRootWorkItems } from "@/lib/image-system";
 import { getMaintenanceModeState } from "@/lib/maintenance-mode";
@@ -18,6 +19,12 @@ export default async function Home() {
     return <MaintenancePage />;
   }
 
+=======
+import { getCategoryOneHeroImages, getImageSystemRootWorkItems } from "@/lib/image-system";
+import Landing from "@/uicomponents/Landing";
+
+export default function Home() {
+>>>>>>> a195d84 (Initial upload or update)
   const imageSystemWorkItems = getImageSystemRootWorkItems();
   const categoryOneHeroImages = getCategoryOneHeroImages();
 

@@ -12,7 +12,10 @@ import {
   TrendingDown,
   TrendingUp,
   Users,
+<<<<<<< HEAD
   Wrench,
+=======
+>>>>>>> a195d84 (Initial upload or update)
 } from "lucide-react";
 import type { DailyTrafficPoint, TrafficSummary } from "@/lib/traffic-analytics";
 
@@ -23,11 +26,14 @@ type Notice = {
 
 type LoadState = "idle" | "loading" | "ready" | "error";
 
+<<<<<<< HEAD
 type MaintenanceState = {
   enabled: boolean;
   updatedAt: string;
 };
 
+=======
+>>>>>>> a195d84 (Initial upload or update)
 const ADMIN_PASSWORD = "12321";
 
 export default function AdminPage() {
@@ -35,18 +41,24 @@ export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [adminPassword, setAdminPassword] = useState("");
   const [loadState, setLoadState] = useState<LoadState>("idle");
+<<<<<<< HEAD
   const [isMaintenanceUpdating, setIsMaintenanceUpdating] = useState(false);
   const [notice, setNotice] = useState<Notice>({ type: "idle", message: "" });
   const [summary, setSummary] = useState<TrafficSummary | null>(null);
   const [maintenanceState, setMaintenanceState] = useState<MaintenanceState | null>(
     null,
   );
+=======
+  const [notice, setNotice] = useState<Notice>({ type: "idle", message: "" });
+  const [summary, setSummary] = useState<TrafficSummary | null>(null);
+>>>>>>> a195d84 (Initial upload or update)
 
   const loadTraffic = async (pwd: string) => {
     setLoadState("loading");
     setNotice({ type: "idle", message: "" });
 
     try {
+<<<<<<< HEAD
       const [trafficResponse, maintenanceResponse] = await Promise.all([
         fetch("/api/admin/traffic", {
           method: "GET",
@@ -73,11 +85,30 @@ export default function AdminPage() {
         const message =
           typeof (trafficPayload as { error?: string })?.error === "string"
             ? (trafficPayload as { error?: string }).error!
+=======
+      const response = await fetch("/api/admin/traffic", {
+        method: "GET",
+        headers: {
+          "x-admin-password": pwd,
+        },
+        cache: "no-store",
+      });
+
+      const payload = (await response.json()) as
+        | TrafficSummary
+        | { error?: string };
+
+      if (!response.ok) {
+        const message =
+          typeof (payload as { error?: string })?.error === "string"
+            ? (payload as { error?: string }).error!
+>>>>>>> a195d84 (Initial upload or update)
             : "טעינת נתוני טראפיק נכשלה";
 
         throw new Error(message);
       }
 
+<<<<<<< HEAD
       if (!maintenanceResponse.ok) {
         const message =
           typeof (maintenancePayload as { error?: string })?.error === "string"
@@ -94,6 +125,11 @@ export default function AdminPage() {
         type: "success",
         message: "נתוני הטראפיק ומצב האתר נטענו בהצלחה.",
       });
+=======
+      setSummary(payload as TrafficSummary);
+      setLoadState("ready");
+      setNotice({ type: "success", message: "נתוני הטראפיק נטענו בהצלחה." });
+>>>>>>> a195d84 (Initial upload or update)
       return true;
     } catch (error) {
       const message =
@@ -130,6 +166,7 @@ export default function AdminPage() {
     await loadTraffic(adminPassword);
   };
 
+<<<<<<< HEAD
   const handleSetMaintenance = async (nextEnabled: boolean) => {
     if (!adminPassword) {
       return;
@@ -192,6 +229,8 @@ export default function AdminPage() {
     }
   };
 
+=======
+>>>>>>> a195d84 (Initial upload or update)
   if (!isAuthenticated) {
     return (
       <div
@@ -289,6 +328,7 @@ export default function AdminPage() {
           </div>
         </section>
 
+<<<<<<< HEAD
         <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-5 shadow-2xl backdrop-blur sm:p-6">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
@@ -357,6 +397,8 @@ export default function AdminPage() {
           </p>
         </section>
 
+=======
+>>>>>>> a195d84 (Initial upload or update)
         {notice.type !== "idle" && (
           <section
             className={[
