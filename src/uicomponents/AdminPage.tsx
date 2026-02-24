@@ -12,6 +12,7 @@ import {
   TrendingDown,
   TrendingUp,
   Users,
+  Wrench,
 } from "lucide-react";
 import type { DailyTrafficPoint, TrafficSummary } from "@/lib/traffic-analytics";
 
@@ -22,6 +23,11 @@ type Notice = {
 
 type LoadState = "idle" | "loading" | "ready" | "error";
 
+type MaintenanceState = {
+  enabled: boolean;
+  updatedAt: string;
+};
+
 const ADMIN_PASSWORD = "12321";
 
 export default function AdminPage() {
@@ -29,38 +35,65 @@ export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [adminPassword, setAdminPassword] = useState("");
   const [loadState, setLoadState] = useState<LoadState>("idle");
+  const [isMaintenanceUpdating, setIsMaintenanceUpdating] = useState(false);
   const [notice, setNotice] = useState<Notice>({ type: "idle", message: "" });
   const [summary, setSummary] = useState<TrafficSummary | null>(null);
+  const [maintenanceState, setMaintenanceState] = useState<MaintenanceState | null>(
+    null,
+  );
 
   const loadTraffic = async (pwd: string) => {
     setLoadState("loading");
     setNotice({ type: "idle", message: "" });
 
     try {
-      const response = await fetch("/api/admin/traffic", {
-        method: "GET",
-        headers: {
-          "x-admin-password": pwd,
-        },
-        cache: "no-store",
-      });
+      const [trafficResponse, maintenanceResponse] = await Promise.all([
+        fetch("/api/admin/traffic", {
+          method: "GET",
+          headers: {
+            "x-admin-password": pwd,
+          },
+          cache: "no-store",
+        }),
+        fetch("/api/admin/maintenance", {
+          method: "GET",
+          headers: {
+            "x-admin-password": pwd,
+          },
+          cache: "no-store",
+        }),
+      ]);
 
-      const payload = (await response.json()) as
-        | TrafficSummary
-        | { error?: string };
+      const [trafficPayload, maintenancePayload] = (await Promise.all([
+        trafficResponse.json().catch(() => ({})),
+        maintenanceResponse.json().catch(() => ({})),
+      ])) as [TrafficSummary | { error?: string }, MaintenanceState | { error?: string }];
 
-      if (!response.ok) {
+      if (!trafficResponse.ok) {
         const message =
-          typeof (payload as { error?: string })?.error === "string"
-            ? (payload as { error?: string }).error!
+          typeof (trafficPayload as { error?: string })?.error === "string"
+            ? (trafficPayload as { error?: string }).error!
             : "טעינת נתוני טראפיק נכשלה";
 
         throw new Error(message);
       }
 
-      setSummary(payload as TrafficSummary);
+      if (!maintenanceResponse.ok) {
+        const message =
+          typeof (maintenancePayload as { error?: string })?.error === "string"
+            ? (maintenancePayload as { error?: string }).error!
+            : "טעינת מצב שיפוצים נכשלה";
+
+        throw new Error(message);
+      }
+
+      setSummary(trafficPayload as TrafficSummary);
+      setMaintenanceState(maintenancePayload as MaintenanceState);
       setLoadState("ready");
-      setNotice({ type: "success", message: "נתוני הטראפיק נטענו בהצלחה." });
+      setNotice({
+        type: "success",
+        message: "נתוני הטראפיק ומצב האתר נטענו בהצלחה.",
+      });
       return true;
     } catch (error) {
       const message =
@@ -95,6 +128,68 @@ export default function AdminPage() {
     }
 
     await loadTraffic(adminPassword);
+  };
+
+  const handleSetMaintenance = async (nextEnabled: boolean) => {
+    if (!adminPassword) {
+      return;
+    }
+
+    const promptText = nextEnabled
+      ? "כדי להעביר את האתר למצב שיפוצים, הזן שוב את הסיסמה:"
+      : "כדי להחזיר את האתר לפעילות, הזן שוב את הסיסמה:";
+
+    const confirmPassword = window.prompt(promptText, "") ?? "";
+
+    if (!confirmPassword) {
+      setNotice({ type: "error", message: "הפעולה בוטלה (לא הוזנה סיסמה)." });
+      return;
+    }
+
+    setIsMaintenanceUpdating(true);
+    setNotice({ type: "idle", message: "" });
+
+    try {
+      const response = await fetch("/api/admin/maintenance", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "x-admin-password": adminPassword,
+        },
+        body: JSON.stringify({
+          enabled: nextEnabled,
+          confirmPassword,
+        }),
+      });
+
+      const payload = (await response.json().catch(() => ({}))) as
+        | MaintenanceState
+        | { error?: string };
+
+      if (!response.ok) {
+        throw new Error(
+          typeof (payload as { error?: string })?.error === "string"
+            ? (payload as { error?: string }).error!
+            : "עדכון מצב שיפוצים נכשל.",
+        );
+      }
+
+      setMaintenanceState(payload as MaintenanceState);
+      setNotice({
+        type: "success",
+        message: nextEnabled
+          ? "האתר הועבר למצב שיפוצים."
+          : "האתר חזר לפעילות רגילה.",
+      });
+    } catch (error) {
+      setNotice({
+        type: "error",
+        message:
+          error instanceof Error ? error.message : "עדכון מצב שיפוצים נכשל.",
+      });
+    } finally {
+      setIsMaintenanceUpdating(false);
+    }
   };
 
   if (!isAuthenticated) {
@@ -192,6 +287,74 @@ export default function AdminPage() {
               </button>
             </div>
           </div>
+        </section>
+
+        <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-5 shadow-2xl backdrop-blur sm:p-6">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="inline-flex items-center gap-2 text-sm font-semibold text-white">
+                <Wrench className="h-4 w-4 text-orange-200" />
+                מצב שיפוצים (כיבוי זמני של האתר)
+              </p>
+              <div className="mt-3 flex flex-wrap items-center gap-2">
+                <span
+                  className={[
+                    "inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs",
+                    maintenanceState?.enabled
+                      ? "border-orange-300/30 bg-orange-300/10 text-orange-100"
+                      : "border-emerald-300/30 bg-emerald-300/10 text-emerald-100",
+                  ].join(" ")}
+                >
+                  <span
+                    className={[
+                      "h-2 w-2 rounded-full",
+                      maintenanceState?.enabled ? "bg-orange-300" : "bg-emerald-300",
+                    ].join(" ")}
+                  />
+                  {maintenanceState?.enabled ? "האתר בשיפוצים" : "האתר פעיל"}
+                </span>
+                {maintenanceState?.updatedAt && (
+                  <span className="text-xs text-zinc-500">
+                    עודכן: {formatDateTime(maintenanceState.updatedAt)}
+                  </span>
+                )}
+              </div>
+              <p className="mt-3 text-sm leading-7 text-zinc-300">
+                כשמצב שיפוצים פעיל, המבקרים יראו מסך תחזוקה. אפשר להיכנס לאתר
+                בכל זאת רק עם סיסמה.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={() => handleSetMaintenance(true)}
+                disabled={
+                  isMaintenanceUpdating || loadState === "loading" || maintenanceState?.enabled
+                }
+                className="inline-flex items-center gap-2 rounded-full border border-orange-300/25 bg-orange-300/10 px-4 py-2 text-sm text-orange-100 transition hover:bg-orange-300/15 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                הפעל מצב שיפוצים
+                <Wrench className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => handleSetMaintenance(false)}
+                disabled={
+                  isMaintenanceUpdating || loadState === "loading" || !maintenanceState?.enabled
+                }
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-4 py-2 text-sm text-white transition hover:bg-white/[0.06] disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                החזר אתר לפעילות
+                <Check className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+
+          <p className="mt-4 text-xs text-zinc-500">
+            אבטחה: גם בדף ה־admin וגם בעת הדלקה/כיבוי של מצב שיפוצים נדרשת
+            סיסמה `12321`.
+          </p>
         </section>
 
         {notice.type !== "idle" && (
